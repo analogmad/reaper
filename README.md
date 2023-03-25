@@ -8,7 +8,7 @@ Add the following repository to ReaPack:
 
 
 ```
-url to index.xml
+https://github.com/analogmad/reaper/raw/main/index.xml
 ```
 
 
