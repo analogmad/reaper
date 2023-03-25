@@ -9,7 +9,7 @@
 {\pard \ql \f0 \sa180 \li0 \fi0 Playdium: RS5K Random MIDI Velocity Generator. Playdium Script will automatically set the Number of Samples in RS5K Parameter to create a true Round Robin using Velocity Ranges that would trigger a Sample. Can also be set to trigger on MIDI Note OFF instead of Note On \par}
 }
 ]]></description>
-        <link rel="website">https://aaroncendan.me</link>
+        <link rel="More Info">https://github.com/analogmad/reaper</link>
       </metadata>
       <version name="1.0.0" author="Analogmad">
         <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/02aad50180004f25f566ee1ce2104ca19ef72ec7/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
