@@ -39,40 +39,53 @@
   ------------------------------------------------------------------------------- 
   function GetRS5kID(tr)
     local id = -1
-    for i = 1,  reaper.TrackFX_GetCount( tr ) do
-      if  ({reaper.TrackFX_GetFXName( tr, i-1, '' )})[2]:find('RS5K') then return i-1 end
+    for i = 1, reaper.TrackFX_GetCount(tr) do
+      if ({reaper.TrackFX_GetFXName(tr, i-1, '')})[2]:find('RS5K') then return i-1 end
+    end
+    return id
+  end
+  
+  function GetMidiRandID(tr)
+    local id = -1
+    for i = 1, reaper.TrackFX_GetCount(tr) do
+      if ({reaper.TrackFX_GetFXName(tr, i-1, '')})[2]:find('_AM_Playdium_Random_Midi_Velocity_Generator') then return i-1 end
     end
     return id
   end
   ------------------------------------------------------------------------------- 
   function ExportSelItemsToRs5k(track)   
-    local number_of_samples = reaper.CountSelectedMediaItems(0)   
-    for i = 1, reaper.CountSelectedMediaItems(0) do
-      --local number_of_samples = reaper.CountSelectedMediaItems(0)
-      local item = reaper.GetSelectedMediaItem(0,i-1)
+    local number_of_samples = reaper.CountSelectedMediaItems(0)
+    
+    -- Get the index of the _AM_Playdium_Random_Midi_Velocity_Generator plugin
+    local midirand_pos = GetMidiRandID(track)
+    
+    -- Add the _AM_Playdium_Random_Midi_Velocity_Generator plugin if it doesn't exist
+    if midirand_pos == -1 then
+      midirand_pos = reaper.TrackFX_AddByName(track, '_AM_Playdium_Random_Midi_Velocity_Generator', false, -1)
+    end
+  
+    -- Get the index of the ReaSamplOmatic5000 plugin
+    local rs5k_pos = GetRS5kID(track)
+  
+    -- Add the ReaSamplOmatic5000 plugin if it doesn't exist
+    if rs5k_pos == -1 then
+      rs5k_pos = reaper.TrackFX_AddByName(track, 'ReaSamplOmatic5000 (Cockos)', false, -1)
+    end
+  
+    -- Iterate through samples and add them to the same ReaSamplOmatic5000 instance
+    for i = 1, number_of_samples do
+      local item = reaper.GetSelectedMediaItem(0, i-1)
       local take = reaper.GetActiveTake(item)
       if not take or reaper.TakeIsMIDI(take) then goto skip_to_next_item end
       
-      local tk_src =  reaper.GetMediaItemTake_Source( take )
-      local filename = reaper.GetMediaSourceFileName( tk_src, '' )
-      --adding Velocity Generator before RS5K to create the round robin
-      midirand_pos = reaper.TrackFX_AddByName( track, '_AM_Random_Midi_Velocity_Generator', false,0 )
-      if midirand_pos == -1 then 
-        midirand_pos = GetRS5kID(track)
-        if midirand_pos == -1 then midirand_pos = reaper.TrackFX_AddByName( track, '_AM_Playdium_Random_Midi_Velocity_Generator', false,-1 ) end
-      end 
-      reaper.TrackFX_SetParam( track, midirand_pos, 1, number_of_samples) -- setting amount of samples in sampler in velocity Generator        
-      rs5k_pos = reaper.TrackFX_AddByName( track, 'ReaSamplOmatic5000 (Cockos)', false,0 )
-      if rs5k_pos == -1 then 
-        rs5k_pos = GetRS5kID(track)
-        if rs5k_pos == -1 then rs5k_pos = reaper.TrackFX_AddByName( track, 'ReaSamplOmatic5000 (Cockos)', false,-1 ) end
-      end
-      reaper.TrackFX_SetParam( track, rs5k_pos, 1, 0.50) -- setting RS5K pan because sometimes it inherits from the param update to the effect       
-      --reaper.TrackFX_SetParam( track, rs5k_pos, 5, 11/86 ) -- pitch for start
-      reaper.TrackFX_SetParamNormalized( track, rs5k_pos, 3, 0 ) -- note range start
-      reaper.TrackFX_SetParamNormalized( track, rs5k_pos, 8, .17 ) -- max voices = 12
-      reaper.TrackFX_SetParamNormalized( track, rs5k_pos, 9, 0 ) -- attack
-      reaper.TrackFX_SetParamNormalized( track, rs5k_pos, 11, 1 ) -- obey note offs
+      local tk_src = reaper.GetMediaItemTake_Source(take)
+      local filename = reaper.GetMediaSourceFileName(tk_src, '')
+      
+      reaper.TrackFX_SetParam(track, midirand_pos, 1, number_of_samples) -- setting amount of samples in sampler in velocity Generator
+      reaper.TrackFX_SetParamNormalized(track, rs5k_pos, 3, 0) -- note range start
+      reaper.TrackFX_SetParamNormalized(track, rs5k_pos, 8, .17) -- max voices = 12
+      reaper.TrackFX_SetParamNormalized(track, rs5k_pos, 9, 0) -- attack
+      reaper.TrackFX_SetParamNormalized(track, rs5k_pos, 11, 1) -- obey note offs
       reaper.TrackFX_SetNamedConfigParm(track, rs5k_pos, "FILE"..(i-1), filename)
       ::skip_to_next_item::
     end
