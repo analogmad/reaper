@@ -7,7 +7,7 @@
   </reapack>
   <reapack name="_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua" type="script">
     <version name="1.0.0">
-      <source file="_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua">https://github.com/analogmad/reaper/raw/02aad50180004f25f566ee1ce2104ca19ef72ec7/Scripts/_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua</source>
+      <source file="_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua">https://github.com/analogmad/reaper/raw/02f217096521966c60c2a98c844d490d6a6da9ba/Scripts/_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua</source>
     </version>
   </reapack>
 </index>
