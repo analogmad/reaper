@@ -1,5 +1,6 @@
 -- @version 1.0
--- @author  MPL Modified by Analogmad (Chris Kowalski)
+-- @author Analogmad, MPL 
+-- Initial Script by MPL Modified by Analogmad (Chris Kowalski)
 -- MPL Helped me with this via the Reaper Forums. I had an issue of putting all samples into one RS5K. Added Arming for Audio Recording. Added Velocity Randomizer
 
 
