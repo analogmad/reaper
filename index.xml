@@ -7,7 +7,9 @@
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
 {\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Playdium: RS5K Random MIDI Velocity Generator.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Works in conjunction with the Playdium Script (_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua)\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Inspired by Soundminer Radium\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Turns Reaper's ReaSamplOmatic5000 into a Sound Design Machine\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Works in conjunction with the Playdium Launcher Script (_AM_Playdium_Load_Selected_Media_Items_into_RS5K.lua)\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 The script will automatically set the Number of Samples in Sampler Parameter based on the number of samples imported into your RS5K that follows the effect\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This will help to create a true Round Robin without repeating the same sample in a row\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Can also be set to trigger on MIDI Note OFF instead of Note On\par}
@@ -26,10 +28,12 @@
         <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
-{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Playdium: Launcher Script.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Imports Selected Media Items into 1 RS5K, ARMS the Track and Loads the Playdium: Random MIDI Velocity Effect\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Playdium: Launcher Script\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Inspired by Soundminer Radium\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Imports Selected Media Items into 1 RS5K, ARMS the Track and Loads the Playdium: Random MIDI Velocity Generator Effect\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 This script will automatically set the Number of Samples in Sampler Parameter on the Effect before it based on the number of samples imported into your RS5K\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 Please visit my github page for a great starting configuration for your RS5K\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Have Fun!\par}
 }]]>
         </description>
         <link rel="More Info">https://github.com/analogmad/reaper</link>
