@@ -7,6 +7,11 @@ Add some text here describing the repository.
 Add the following repository to ReaPack:
 
 
+```
+url to index.xml
+```
+
+
 ## Recommended RS5K Settings
 
 ![RS5K Settings](https://github.com/analogmad/reaper/blob/main/images/your-image-filename.png)
