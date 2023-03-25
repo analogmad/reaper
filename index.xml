@@ -6,7 +6,9 @@
         <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
 {\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
 \widowctrl\hyphauto
-{\pard \ql \f0 \sa180 \li0 \fi0 Playdium: RS5K Random MIDI Velocity Generator.&#10; Playdium Script will automatically set the Number of Samples in RS5K Parameter to create a true Round Robin using Velocity Ranges that would trigger a Sample.&#10; Can also be set to trigger on MIDI Note OFF instead of Note On \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Playdium: RS5K Random MIDI Velocity Generator.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Playdium Script will automatically set the Number of Samples in RS5K Parameter to create a true Round Robin using Velocity Ranges that would trigger a Sample.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Can also be set to trigger on MIDI Note OFF instead of Note On\par}
 }
 ]]></description>
         <link rel="More Info">https://github.com/analogmad/reaper</link>
