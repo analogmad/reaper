@@ -1,6 +1,7 @@
 # Analogmad's Reaper Scripts and Effects
 
-Add some text here describing the repository.
+First deposit is an Effect and Script combo heavily inspired by Soundminer's Radium Sampler.
+The script and effect allow you to creatively perform samples already in your Reaper project
 
 ## How to Install
 
