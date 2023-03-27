@@ -1,5 +1,6 @@
--- @version 1.0
+-- @version 1.1
 -- @author Analogmad (Chris Kowalski)
+-- @changelog : Fixed Note Off Messages being Surpressed when Send on Note Off is set to OFF
 
 desc:Playdium: Random MIDI Velocity Generator (No Repeats) with Note Off Toggle
 
@@ -47,6 +48,10 @@ while (
     velocity = msg23 >> 8;
     
     channel == channelIn || channelIn == -1 ? (
+      // Process Note Off messages when Send on Note Off is OFF
+      status == NoteOff && send_on_note_off == 0 ? (
+        midisend(offset, msg1, msg23);
+      );
       while (send_on_note_off == 1 && status == NoteOn) (
         // Store Note On message and wait for Note Off
         stored_msg1 = msg1;
@@ -70,8 +75,12 @@ while (
         velocity_history[current_index] = vel_rand;
         current_index = (current_index + 1) % max_history;
         midisend(offset, status + channel, (note | vel_rand << 8));
+
+        // Pass through the Note Off message : DOH!
+        midisend(offset, msg1, msg23);
         break;
       );
+
 
       ((status == NoteOn && velocity > 0 && send_on_note_off == 0)) ? (
         // Generate a random velocity and apply it to the Note On event
@@ -102,4 +111,3 @@ while (
         1;   // Force loop to continue until all messages read
        );
      );
-
