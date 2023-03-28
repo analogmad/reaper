@@ -23,6 +23,9 @@
       <version name="1.1.0" author="Analogmad">
         <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/e489fa27aaf269f518de213203ba8411978c6aac/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
       </version>
+      <version name="1.2.0" author="Analogmad">
+        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/e2987d7646ed111936b844a6f6702dc138ae17f6/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
+      </version>
     </reapack>
   </category>
   <category name="FX Specific">
