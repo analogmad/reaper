@@ -1,6 +1,7 @@
--- @version 1.1
+-- @version 1.2
 -- @author Analogmad (Chris Kowalski)
--- @changelog : Fixed Note Off Messages being Surpressed when Send on Note Off is set to OFF
+-- @changelog : Fixed Note Off Messages being Supressed when Send on Note Off is set to OFF
+-- @changelog : Fixed Control Messages Momentarily freezing Reaper (Pitch, Mod, CC, etc)
 
 desc:Playdium: Random MIDI Velocity Generator (No Repeats) with Note Off Toggle
 
@@ -47,7 +48,8 @@ while (
     note = msg23 & $x7F;
     velocity = msg23 >> 8;
     
-    channel == channelIn || channelIn == -1 ? (
+
+    (status == NoteOn || status == NoteOff) ? (
       // Process Note Off messages when Send on Note Off is OFF
       status == NoteOff && send_on_note_off == 0 ? (
         midisend(offset, msg1, msg23);
@@ -93,6 +95,7 @@ while (
               velocity_history[current_index] = vel_rand;
               current_index = (current_index + 1) % max_history;
               midisend(offset, status + channel, (note | vel_rand << 8));
+              midisend(offset, NoteOff, msg23, (note | vel_rand << 8));
             ):(      
             //  Pass through original message if not a note on or note off event (depending on toggle)
               while (status == NoteOn && send_on_note_off == 0) (
@@ -108,6 +111,6 @@ while (
           //  Pass through original message if not on specified channel
             midisend(offset, msg1, msg23);
           );
-        1;   // Force loop to continue until all messages read
+        1;   // Loop to ensure all messages read
        );
      );
