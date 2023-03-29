@@ -26,6 +26,10 @@
       <version name="1.2.0" author="Analogmad">
         <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/e2987d7646ed111936b844a6f6702dc138ae17f6/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
       </version>
+      <version name="1.3.0" author="Analogmad">
+        <changelog><![CDATA[# Fixed Sustain control when Send on Note off is Off. Fixed Send on Note off Ghost Notes and now also Obeys ADSR]]></changelog>
+        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/d19f41b2f6461bb6eee23f02f40b4d5525f0c0c1/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
+      </version>      
     </reapack>
   </category>
   <category name="FX Specific">
