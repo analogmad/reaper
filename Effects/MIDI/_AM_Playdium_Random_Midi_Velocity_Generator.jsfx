@@ -1,7 +1,8 @@
--- @version 1.2
+-- @version 1.3
 -- @author Analogmad (Chris Kowalski)
 -- @changelog : Fixed Note Off Messages being Supressed when Send on Note Off is set to OFF
 -- @changelog : Fixed Control Messages Momentarily freezing Reaper (Pitch, Mod, CC, etc)
+-- @changelog : Fixed Sustain control when Send on Note off is Off. Fixed Send on Note off Ghost Notes and now also Obeys ADSR
 
 desc:Playdium: Random MIDI Velocity Generator (No Repeats) with Note Off Toggle
 
@@ -18,15 +19,15 @@ NoteOn = $x90;
 
 // Initialize the velocity history array
 velocity_history[0] = 0;
-max_history = 5;
+max_history = 0;
 current_index = 0;
-num_samples = 5;
+num_samples = 0;
 
 // Generate a random velocity without repeating the recent history
 function random_velocity() (
   sample_range = (126 - 0 + 1) / num_samples;
 
-  new_velocity = slider4 + floor(rand(num_samples) * sample_range) + floor(rand(sample_range));
+  new_velocity = vel_low + floor(rand(num_samples) * sample_range) + floor(rand(sample_range));
   new_velocity;
 );
 
@@ -34,10 +35,8 @@ function random_velocity() (
 channelIn = min(max(0 - 1 | 0, -1), 15);
 max_history = slider1;
 num_samples = slider2;
-slider4 = min(max(0 | 0, 0), 126 | 0);
-vel_low = slider4;
-slider5 = min(max(126 | 0, slider4), 126);
-vel_high = slider5;
+vel_low = 0;
+vel_high = 126;
 send_on_note_off = slider6;
 
 @block
@@ -61,53 +60,56 @@ while (
         break;
       );
 
-      while (send_on_note_off == 1 && status == NoteOff) (
-        // Restore Note On message and process it
-        msg1 = stored_msg1;
-        msg23 = stored_msg23;
-        status = msg1 & $xF0;
+
+
+      ((status == NoteOn && velocity > 0 && send_on_note_off == 0)) ? ( 
+        // Generate a random velocity and apply it to the Note On event
+        prev_velocity = velocity_history[current_index];
+        vel_rand = random_velocity();
         
-        // Generate a random velocity and apply it to the Note On event
-        prev_velocity = velocity_history[current_index];
-        vel_rand = random_velocity();
         // Ensure the new velocity value is not in the same sample range as the previous velocity
-        while (floor((prev_velocity - slider4) / sample_range) == floor((vel_rand - slider4) / sample_range)) (
-          vel_rand = random_velocity();
-        );
-        velocity_history[current_index] = vel_rand;
-        current_index = (current_index + 1) % max_history;
-        midisend(offset, status + channel, (note | vel_rand << 8));
-
-        // Pass through the Note Off message : DOH!
-        midisend(offset, msg1, msg23);
-        break;
-      );
-
-
-      ((status == NoteOn && velocity > 0 && send_on_note_off == 0)) ? (
-        // Generate a random velocity and apply it to the Note On event
-        prev_velocity = velocity_history[current_index];
-        vel_rand = random_velocity();
-        // Ensure the new velocity value is not in the same sample range as the previous velocity
-        while (floor((prev_velocity - slider4) / sample_range) == floor((vel_rand - slider4) / sample_range)) (
+        while (floor((prev_velocity - vel_low) / sample_range) == floor((vel_rand - vel_low) / sample_range)) (
           vel_rand = random_velocity();
               );
               velocity_history[current_index] = vel_rand;
               current_index = (current_index + 1) % max_history;
               midisend(offset, status + channel, (note | vel_rand << 8));
-              midisend(offset, NoteOff, msg23, (note | vel_rand << 8));
             ):(      
+            
             //  Pass through original message if not a note on or note off event (depending on toggle)
               while (status == NoteOn && send_on_note_off == 0) (
                 midisend(offset, msg1, msg23);
                 break;
-              );
+              ); 
               while (status != NoteOn && status != NoteOff) (
                 midisend(offset, msg1, msg23);
                 break;
               );
+              // Moved Send on Note Off here to eliminate ghost notes sent on Note Off Messages
+              while (send_on_note_off == 1 && status == NoteOff) (
+                // Restore Note On message and process it
+                msg1 = stored_msg1;
+                msg23 = stored_msg23;
+                status = msg1 & $xF0;
+         
+                // Generate a random velocity and apply it to the Note On event
+                prev_velocity = velocity_history[current_index];
+                vel_rand = random_velocity();
+                
+                // Ensure the new velocity value is not in the same sample range as the previous velocity
+                while (floor((prev_velocity - vel_low) / sample_range) == floor((vel_rand - vel_low) / sample_range)) (
+                  vel_rand = random_velocity();
+                );
+                
+                velocity_history[current_index] = vel_rand;
+                current_index = (current_index + 1) % max_history;
+                midisend(offset, status + channel, (note | vel_rand << 8));
+                // Sending NoteOff here for Send on note off so it can pass through the RS5K ADSR
+                midisend(offset, NoteOff, (note | vel_rand << 8));
+                break;
+              );                
             );
-          ):(        
+          ):( 
           //  Pass through original message if not on specified channel
             midisend(offset, msg1, msg23);
           );
