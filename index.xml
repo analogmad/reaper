@@ -53,4 +53,25 @@
       </version>
     </reapack>
   </category>
+  <category name="FX Specific">
+    <reapack name="_AM_Playdium_Load_Selected_Media_Items_into_RS5K_NOGLUE.lua" type="script" desc="Playdium: Imports Selected Media Items into 1 RS5K without Gluing, ARMS Track and Loads Random Velocity Effect">
+            <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+{\pard \ql \f0 \sa180 \li0 \fi0 \b \fs36 Playdium: Launcher Script\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Inspired by Soundminer Radium\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Imports Selected Media Items into 1 RS5K without Gluing, ARMS the Track and Loads the Playdium: Random MIDI Velocity Generator Effect\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This script will automatically set the Number of Samples in Sampler Parameter on the Effect before it based on the number of samples imported into your RS5K\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Please visit my github page for a great starting configuration for your RS5K\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Have Fun!\par}
+}]]>
+        </description>
+        <link rel="More Info">https://github.com/analogmad/reaper</link>
+      </metadata>
+      <version name="1.0.0" author="Analogmad, MPL">
+        <source main="main" file="_AM_Playdium_Load_Selected_Media_Items_into_RS5K_NOGLUE.lua">https://github.com/analogmad/reaper/raw/f793307aea80e87c431cdb17cc0d24ea7e35a67f/Scripts/FX%20Specific/_AM_Playdium_Load_Selected_Media_Items_into_RS5K_NOGLUE.lua</source>
+      </version>
+    </reapack>
+  </category>
 </index>
