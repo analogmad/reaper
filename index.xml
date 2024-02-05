@@ -17,18 +17,9 @@
         </description>
         <link rel="More Info">https://github.com/analogmad/reaper</link>
       </metadata>
-      <version name="1.0.0" author="Analogmad">
-        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/02aad50180004f25f566ee1ce2104ca19ef72ec7/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
-      </version>
-      <version name="1.1.0" author="Analogmad">
-        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/e489fa27aaf269f518de213203ba8411978c6aac/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
-      </version>
-      <version name="1.2.0" author="Analogmad">
-        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/e2987d7646ed111936b844a6f6702dc138ae17f6/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
-      </version>
-      <version name="1.3.0" author="Analogmad">
-        <changelog><![CDATA[# Fixed Sustain control when Send on Note off is Off. Fixed Send on Note off Ghost Notes and now also Obeys ADSR]]></changelog>
-        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/d19f41b2f6461bb6eee23f02f40b4d5525f0c0c1/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
+      <version name="1.4.0" author="Analogmad">
+        <changelog><![CDATA[# Fixed random_velocity function from generating a velocity greater than 127]]></changelog>
+        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/blob/b68bae7c18b7490968d78b99599f28d1e894b45a/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
       </version>      
     </reapack>
   </category>
