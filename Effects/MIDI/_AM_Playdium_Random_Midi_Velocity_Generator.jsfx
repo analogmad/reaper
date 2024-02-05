@@ -1,8 +1,9 @@
--- @version 1.3
+-- @version 1.4
 -- @author Analogmad (Chris Kowalski)
 -- @changelog : Fixed Note Off Messages being Supressed when Send on Note Off is set to OFF
 -- @changelog : Fixed Control Messages Momentarily freezing Reaper (Pitch, Mod, CC, etc)
 -- @changelog : Fixed Sustain control when Send on Note off is Off. Fixed Send on Note off Ghost Notes and now also Obeys ADSR
+-- @changelog : Fixed random_velocity function from generating a velocity greater than 127
 
 desc:Playdium: Random MIDI Velocity Generator (No Repeats) with Note Off Toggle
 
@@ -25,9 +26,12 @@ num_samples = 0;
 
 // Generate a random velocity without repeating the recent history
 function random_velocity() (
-  sample_range = (126 - 0 + 1) / num_samples;
+  sample_range = (127 - 0 + 1) / num_samples;
 
   new_velocity = vel_low + floor(rand(num_samples) * sample_range) + floor(rand(sample_range));
+  while (new_velocity > vel_high) (
+    new_velocity = vel_low + floor(rand(num_samples) * sample_range) + floor(rand(sample_range));
+  );
   new_velocity;
 );
 
@@ -35,8 +39,8 @@ function random_velocity() (
 channelIn = min(max(0 - 1 | 0, -1), 15);
 max_history = slider1;
 num_samples = slider2;
-vel_low = 0;
-vel_high = 126;
+vel_low = 1;
+vel_high = 127;
 send_on_note_off = slider6;
 
 @block
