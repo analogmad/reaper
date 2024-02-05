@@ -19,7 +19,7 @@
       </metadata>
       <version name="1.4.0" author="Analogmad">
         <changelog><![CDATA[# Fixed random_velocity function from generating a velocity greater than 127]]></changelog>
-        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/blob/b68bae7c18b7490968d78b99599f28d1e894b45a/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
+        <source file="_AM_Playdium_Random_Midi_Velocity_Generator.jsfx">https://github.com/analogmad/reaper/raw/455d382ba20150385cf7a006d42f97710c735f4a/Effects/MIDI/_AM_Playdium_Random_Midi_Velocity_Generator.jsfx</source>
       </version>      
     </reapack>
   </category>
