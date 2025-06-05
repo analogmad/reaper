@@ -1,8 +1,7 @@
--- @version 1.1
+-- @version 1.0
 -- @author Analogmad, MPL, JROPE
--- Initial Script by MPL Modified by Analogmad (Chris Kowalski)
--- MPL Helped me with this via the Reaper Forums. I had an issue of putting all samples into one RS5K. Added Arming for Audio Recording. Added Velocity Randomizer
--- Further modified by JROPE to handle batching multiple tracks individually
+-- Initial Script by MPL and Analogmad (Chris Kowalski), modified by JROPE
+-- "_Multi" version sends each track's selected items to their own instance of RS5K
 
 
 local script_title = 'Playdium :Export selected items to RS5k instances per track'
